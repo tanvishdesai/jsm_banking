@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Horizon",
   description: "Horizon moder banking for everyone",
   icons: {
-    icon: 'public/icons/logo.svg'
+    icon: '/icons/logo.svg'
   }
 };
 
