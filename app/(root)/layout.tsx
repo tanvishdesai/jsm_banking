@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   const loggedIn = {firstname: 'tanvish', lastname: 'desai'}
   return (
-   <main className="flex h-screen w-full font-inter">
+   <main className="flex h-screen w-full font-inter" suppressHydrationWarning>
     <Sidebar user={loggedIn} />
     <div className="flex size-full flex-col">
       <div className="root-layout">
