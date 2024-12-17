@@ -1,18 +1,19 @@
 import React from "react";
 import HeaderBox from "../components/HeaderBox";
 import TotalBalanceBox from "../components/TotalBalanceBox";
-import RightSidear from "../components/RightSidear";
+import RightSidebar from "../components/RightSidebar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = () => {
-  const loggedIn = {firstName: 'tanvish',email: 'tanvishdesai@gmail.com', lastName: 'desai'}
+const Home = async () => {
+const loggedIn = await getLoggedInUser()
   return (
-    <section className="home">
+    <section className="home" suppressHydrationWarning>
       <div className="home-content">
         <header className="home-header">
           <HeaderBox
             type ="greeting"
             title = "welcome"          
-            user ={loggedIn?.firstName || 'Guest'}
+            user ={loggedIn?.name || 'Guest'}
             subtext = "access and manage all your transaction in one place"
           />
           <TotalBalanceBox  
@@ -24,7 +25,7 @@ const Home = () => {
       </div>
 
 
-      <RightSidear user={loggedIn} transactions={[]} banks={[{currentBalance:123.5},{currentBalance:5555.95}]} />
+      <RightSidebar user={loggedIn} transactions={[]} banks={[{currentBalance:123.5},{currentBalance:5555.95}]} />
     </section>
   );
 };

@@ -12,6 +12,7 @@ import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { SignIn, SignUp } from "@/lib/actions/user.actions";
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -35,15 +36,15 @@ const AuthForm = ({ type }: { type: string }) => {
     try {
       // sign up with appwrite and create plaid
       if (type === "sign-up") {
-        //  const newUser = await SignUp(data)
-        //  setUser(newUser)
+         const newUser = await SignUp(data)
+         setUser(newUser)
       }
       if (type === "sign-in") {
-        // const response = await SignIn({
-        //   email: data.email,
-        //   password: data.password,
-        // })
-        // if(response) router.push('/')
+        const response = await SignIn({
+          email: data.email,
+          password: data.password,
+        })
+        if(response) router.push('/')
       }
     } catch (error) {
       console.log(error);
@@ -66,8 +67,8 @@ const AuthForm = ({ type }: { type: string }) => {
             Horizon
           </h1>
         </Link>
-        <div className="flex-col flex gap-1 md:gap-3">
-          <h1 className="text-24 lg:text-3 font-semibold text-gray-900">
+        <div className="flex flex-col gap-1 md:gap-3">
+          <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
             <p className="text-16 font-normal text-gray-600">
               {" "}
